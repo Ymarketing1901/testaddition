@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Equation Generator Test</title>
+</head>
+<body>
+  <h1>All Operations Equation Generator Test</h1>
+  <label for="grade">Grade:</label>
+  <select id="grade">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+  <label for="difficulty">Difficulty:</label>
+  <select id="difficulty">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+  <button onclick="generate()">Start</button>
+
+  <pre id="output"></pre>
+
+  <script type="module">
+    import { generateEquation } from './equationQuery.js';
+
+    window.generate = function () {
+      const grade = parseInt(document.getElementById('grade').value);
+      const difficulty = parseInt(document.getElementById('difficulty').value);
+      let output = "";
+
+      for (let i = 0; i < 10; i++) {
+        try {
+          const q = generateEquation(grade, difficulty);
+          output += `${i + 1}. [${q.type}] ${q.equation} = ?\n   Choices: [${[...q.decoys, q.correctAnswer].sort((a, b) => a - b).join(', ')}]\n\n`;
+        } catch (e) {
+          output += `${i + 1}. Error: ${e.message}\n\n`;
+        }
+      }
+
+      document.getElementById('output').textContent = output;
+    };
+  </script>
+</body>
+</html>

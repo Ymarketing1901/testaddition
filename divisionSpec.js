@@ -1,0 +1,1 @@
+export const divisionSpec = {0: {}, 1: {}, 2: {}, 3: {5: "2-digit ÷ 1-digit"}, 4: {1: "2-digit ÷ 1-digit", 2: "2-digit ÷ 1-digit", 3: "3-digit ÷ 1-digit", 4: "3-digit ÷ 1-digit", 5: "3-digit ÷ 2-digit"}, 5: {1: "3-digit ÷ 1-digit", 2: "3-digit ÷ 2-digit", 3: "3-digit ÷ 2-digit", 4: "3-digit ÷ 2-digit", 5: "4-digit ÷ 2-digit"}};
