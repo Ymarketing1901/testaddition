@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Addition Generator Test</title>
+</head>
+<body>
+  <h1>Addition Generator Test</h1>
+  <label for="grade">Grade:</label>
+  <select id="grade">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+  <label for="difficulty">Difficulty:</label>
+  <select id="difficulty">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+  <button onclick="generate()">Start</button>
+
+  <pre id="output"></pre>
+
+  <script type="module">
+    import { generateAdditionQuestion } from './additionBuilder.js';
+
+    window.generate = function () {
+      const grade = parseInt(document.getElementById('grade').value);
+      const difficulty = parseInt(document.getElementById('difficulty').value);
+      let output = "";
+
+      for (let i = 0; i < 10; i++) {
+        const q = generateAdditionQuestion(grade, difficulty);
+        output += `${i + 1}. ${q.equation} = ?\n   Choices: [${[...q.decoys, q.correctAnswer].sort((a, b) => a - b).join(', ')}]\n\n`;
+      }
+
+      document.getElementById('output').textContent = output;
+    };
+  </script>
+</body>
+</html>
